@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Property_Rental_Management_Web_Site.Models.Users1>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["Message"] != null) {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    if (TempData["Message"].Equals("User was created successfully!")) {
+        <script type="text/javascript">
+            toastr.success('@TempData["Message"]', 'User Created');
+        </script>
+    } else if (TempData["Message"].Equals("User was deleted successfully!")) {
+        <script type="text/javascript">
+            toastr.warning('@TempData["Message"]', 'User Deleted');
+        </script>
+    }
+}
+
+<h1 class="text text-center text-success mb-4">Users Menu</h1>
+
+<p>
+    <a class="btn btn-success mb-4" asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserType)
+            </td>
+            <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.UserId">Details</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

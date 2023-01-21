@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Property_Rental_Management_Web_Site.Models.Messages>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text text-center text-success mb-4">Messages Menu</h1>
+
+
+
+<p>
+    <a class="btn btn-success mb-4" asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tenant)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tenant.TenantId)
+            </td>
+            <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.MessageId">Edit</a>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.MessageId">Details</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.MessageId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

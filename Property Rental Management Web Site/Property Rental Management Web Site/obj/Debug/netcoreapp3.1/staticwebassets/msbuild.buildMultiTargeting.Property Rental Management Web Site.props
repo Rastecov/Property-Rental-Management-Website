@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Property Rental Management Web Site.props" />
+</Project>

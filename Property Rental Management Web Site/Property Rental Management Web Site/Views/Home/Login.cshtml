@@ -1,0 +1,70 @@
+﻿@model Property_Rental_Management_Web_Site.Models.Users1
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@if (TempData["Message"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    if (TempData["Message"].Equals("Signup was successfull"))
+    {
+        <script type="text/javascript">
+            toastr.success('@TempData["Message"]', 'Sign Up');
+        </script>
+    }
+}
+
+
+@using (Html.BeginForm())
+{
+   
+    <form asp-action="Login">
+        <div class="m-auto cards mt-4">
+            @if (ViewData["hasMessage"] == "True")
+            {
+                <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+            }    
+            @Html.AntiForgeryToken()
+
+            <div class="card card-custom border-primary">
+                <div class="card-body">
+                    <h1 class="card-title text-primary text-center">Login</h1>
+                    <div class="input-group mb-1">
+                        <i class="bi bi-person-video2 input-group-text"></i>
+                        <input type="text" name="userid" placeholder="Please enter your User Id" class="form-control form-control-lg" />
+                    </div>
+                    <div class="input-group mb-1">
+                        <i class="bi bi-key-fill input-group-text"></i>
+                        <input type="password" name="password" placeholder="Please enter your Password" class="form-control form-control-lg" />
+                    </div>
+                    <div class="text-center mt-2">
+                        <button type="submit" class="btn btn-primary ">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+<div>
+    
+  
+   
+    <ul>
+        <li>
+            <input type="checkbox" class="form-check-input" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">Remember me</label>
+
+           
+        </li>
+
+        @Html.ActionLink("Click here to Signup", "Signup") |
+        @Html.ActionLink("Forgot password", "Forgot")
+
+       
+    </ul>
+
+  
+
+</div>
